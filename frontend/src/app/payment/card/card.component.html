@@ -1,0 +1,58 @@
+
+<div class="container my-5 py-5"> 
+    <div class="row d-flex justify-content-center py-5">
+      <div class="col-md-7 col-lg-5 col-xl-4">
+        <div class="card" style="border-radius: 15px;">
+          <h2 class="right">Enter Card Details</h2>
+          <div class="card-body p-4">
+                
+            <form [formGroup]="cardForm" novalidate #myform="ngForm" (ngSubmit)="login()">
+              <h5 class="accept" style="text-align:center;color: brown;">Amount: {{TotalAmount}}</h5>
+              <h5 class="accept">we accept:</h5>
+              <img src="assets\image\visa.png" alt="" width="65px"/> &nbsp; 
+              <img src="assets\image\mastercard.png" alt="" width="65px"/> &nbsp;
+              <img src="assets\image\amarican.png" alt="" width="65px"/> &nbsp;
+              <img src="assets\image\discover.webp" alt="" width="65px"/>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="form-outline">
+                  <label class="form-label" for="typeText"><h6 class="h6">Card Number</h6></label>
+                   <input formControlName="cardnumber" type="text"  class="form-control form-control-lg" placeholder="1234 5678 9012 3457"/>
+                   <small class="text-danger" *ngIf="cardnumber && myform.submitted && cardnumber.hasError('required')">*Card Number is required</small>
+                   <small class="text-danger" *ngIf="cardnumber && myform.submitted && cardnumber.hasError('minlength')">*Card number should be in 16 digits</small>
+                   <small class="text-danger" *ngIf="cardnumber && myform.submitted && cardnumber.hasError('maxlength')">*Card number should be in 16 digits</small><br>
+                   <small class="text-danger" *ngIf="cardnumber && myform.submitted && cardnumber.hasError('pattern')">*Card number should be in numbers</small>
+                   </div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-outline">
+                  <label class="form-label" for="typeName"><h6 class="h6">Cardholder's Name</h6></label>
+                  <input formControlName="name" type="text"  class="form-control form-control-lg" placeholder="Cardholder's Name"/>
+                  <small class="text-danger" *ngIf="name && myform.submitted && name.hasError('required')">*Cardholder's name is required</small>
+                  </div>
+              </div> 
+
+              <div class="d-flex justify-content-between align-items-center pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="typeExp"><h6 class="h6">Expiration</h6></label>
+                  <input formControlName="expiration" type="text" class="form-control form-control-lg" placeholder="MM/YYYY"/>
+                  <small class="text-danger" *ngIf="expiration && myform.submitted && expiration.hasError('required')">*Expiration date is required</small>
+                  <small class="text-danger" *ngIf="expiration && myform.submitted && expiration.hasError('pattern')">*Wrong format</small>
+                </div>
+
+                <div class="form-outline">
+                  <label class="form-label" for="typeText"><h6 class="h6">cvv</h6></label>
+                  <input formControlName="cvv" type="password" class="form-control form-control-lg" placeholder="&#9679;&#9679;&#9679;" />
+                  <small class="text-danger" *ngIf="cvv && myform.submitted && cvv.hasError('required')">*cvv number is required</small>
+                  <small class="text-danger" *ngIf="cvv && myform.submitted && cvv.hasError('pattern')">*cvv should be in numbers</small>
+                  </div>
+                </div>
+                         <br>
+            <div class="text-center"><button type="submit" class="button">Proceed</button></div>
+             <h6 class="text-danger" *ngIf= "validate && myform.submitted && cardForm.valid">*Incorrect cvv</h6>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

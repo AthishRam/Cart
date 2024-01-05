@@ -1,0 +1,24 @@
+<div class="login-box">
+    <h2 style="color:#03e9f4;">Pay {{TotalAmount}} </h2>
+    <form [formGroup]="upiForm" novalidate #myform="ngForm" (ngSubmit)="login()">
+        <div class="user-box">
+        <input formControlName="id" type="text">
+        <small class="text-danger" *ngIf="id && id.hasError('required') && myform.submitted">*upi id is required</small>
+        <small class="text-danger" *ngIf="id && id.hasError('pattern') && myform.submitted">*Invalid upi id pattern </small>
+        <label>UPI ID</label>
+       </div>
+<br>
+      <div class="user-box">
+        <input formControlName="password" type="password">
+        <small class="text-danger" *ngIf="password && password.hasError('required') && myform.submitted">*Password is required</small>
+        <small class="text-danger" *ngIf="password && password.hasError('maxlength') && myform.submitted">*Password should be of 6 digits</small>
+        <small class="text-danger" *ngIf="password && password.hasError('minlength') && myform.submitted">*Password should be of 6 digits</small><br>
+        <small class="text-danger" *ngIf="password && password.hasError('pattern') && myform.submitted">*Password should be in numbers</small>
+        <label>Password</label>
+        </div>
+<br>
+     <button class="button" type="submit" href="#">Proceed</button>
+<br>    
+     <h6 class="text-danger" *ngIf= "validate && myform.submitted && upiForm.valid">*Mismatched</h6>
+    </form>
+  </div>

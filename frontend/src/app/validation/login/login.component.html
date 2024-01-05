@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="text-center">
+                  <h1>Login</h1> 
+                  <!--<h6>Please enter email & password</h6>-->                
+                 </div>
+                   
+                 <form [formGroup]="loginForm" novalidate #myform="ngForm" (ngSubmit)="login()">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the Mail Id">
+                    <small class="text-danger" *ngIf="email && myform.submitted && email.hasError('required')">*Enter your EmailId</small>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input  formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter a Password">
+                    <small class="text-danger" *ngIf="password && myform.submitted && password.hasError('required')">*Enter your Password</small>
+                    <small class="text-danger" *ngIf="valid && !password.hasError('required')">*Email address or Password is incorrect</small>                    
+                   </div>
+                  <button type="submit" class="btn btn-primary mb-2">Login</button>
+                </form>
+                
+                <a style="color: #fff;margin-top:10px" routerLink="/signup">New user? Click here to signup</a>
+              
+              </div>
+          </div>
+      </div>
+  </div>
+

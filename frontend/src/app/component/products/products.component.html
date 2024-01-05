@@ -1,0 +1,42 @@
+<div class="card-top container-fluid">
+   <div class="d-flex">
+    <div class="gap"></div>
+     
+    <div class="item">
+      <a  (click)="filter('')"><img src="assets\image\all.png" alt="">
+      <h6>All Products</h6></a>
+    </div>
+    <div class="item">
+      <a  (click)="filter('Mobiles')"><img src="assets\image\mobile.jpeg" alt="">
+      <h6>Mobiles</h6></a>
+    </div>
+    <div class="item">
+      <a  (click)="filter('Appliances')"><img src="assets\image\appliances.jpeg" alt="">
+      <h6>Appliances</h6></a>
+    </div>
+    <div class="item">
+      <a  (click)="filter('Fashion')" ><img src="assets\image\fashion.jpeg" alt="">
+      <h6>Fashion</h6></a></div>
+</div>  
+</div>
+
+<div  class="container">
+  <div class="row">
+    <ng-container *ngFor="let cart of filterCategory | filter:searchKey:'title'">
+    <div class="card col-md-3">
+      <img src="{{cart.image}}" alt="">
+      <h5 class="details">{{cart.title}}</h5>
+      <p class="details">{{cart.description}}</p>
+      <p class="details"><b>Price: </b>Rs {{cart.price}}</p>
+      <small style="text-align:center;" class="text-danger" *ngIf= "cart.quantity > cart.stock">This Product has only {{cart.stock}} items</small>
+     <button class="btn btn-primary" (click)= addtocart(cart)>Add to cart</button>
+      
+     <div style="margin:5px" class="text-center">
+        <button style="width:35px;" class="btn-success" (click)=inc(cart)>+</button>
+       <input type="text" class="input-box" style="text-align:center" [(ngModel)]="cart.quantity" value={{cart.quantity}}/>
+        <button style="width:35px;" class="btn-danger" (click)=dec(cart)>-</button>
+        </div>
+    </div>
+  </ng-container>
+</div>
+</div>

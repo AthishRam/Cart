@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="text-center">
+                  <h1>Sign Up</h1> 
+              </div>
+                
+                 <form [formGroup]="signupForm" novalidate #myform="ngForm" (ngSubmit)="signup()">
+                
+                  <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Full Name</label>
+                      <input formControlName="fullname" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter your Full Name">
+                      <small class="text-danger" *ngIf="fullname && myform.submitted && fullname.hasError('required')">*Enter your Fullname</small>
+                      <small class="text-danger" *ngIf="fullname && myform.submitted && fullname.hasError('minlength')">*Fullname should be of atleast two characters</small>
+                    </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email Id</label>
+                   <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the Mail Id">
+                   <small class="text-danger" *ngIf="email && myform.submitted && email.hasError('required')">*Enter your EmailId</small>
+                  <small  class="text-danger" *ngIf="email && myform.submitted && email.hasError('pattern')">*Invalid Format</small>
+                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter the Password">
+                    <small class="text-danger" *ngIf="password && myform.submitted && password.hasError('required')">*Enter your Password</small>
+                    <small class="text-danger" *ngIf="password && myform.submitted && password.hasError('minlength')">*Password should be atlleast 5 characters</small>
+                      </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                    <input formControlName="confirmpassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm the password">
+                    <small class="text-danger" *ngIf="signupForm && myform.submitted && signupForm.hasError('misMatch')">*Password not Matching</small>
+                  </div>
+                  
+                  <label>Date of Birth:</label>&nbsp;&nbsp;
+                  <mat-form-field>
+                 <input style="color: whitesmoke" placeholder="MM/DD/YY"  formControlName="dob" matInput [matDatepicker]="myDatePicker" [min]="minDate" [max]="maxDate">
+                 <mat-datepicker-toggle  style="color: aliceblue;" [for]="myDatePicker" matSuffix> </mat-datepicker-toggle>
+                   <mat-datepicker #myDatePicker ></mat-datepicker>
+                   <small class="text-danger" *ngIf="date && myform.submitted && date.hasError('required')">*Date of Birth is in wrong format</small>
+                </mat-form-field>
+                 
+                  <br>
+                  <button type="submit" class="btn btn-primary mb-2">Sign up</button>
+                </form>
+
+                <a style="color: #fff;margin-top:10px" routerLink="/login">Already registered? Click here to login</a>
+                
+              </div>
+          </div>
+      </div>
+  </div>
+
